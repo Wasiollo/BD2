@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sample.SettingsWindowController">
+    <children>
+        <Label layoutX="274.0" layoutY="31.0" text="User Data"/>
+        <Label layoutX="22.0" layoutY="87.0" text="First Name"/>
+        <TextField fx:id="first_name_textfiled" layoutX="95.0" layoutY="83.0"/>
+        <Label layoutX="22.0" layoutY="127.0" text="LastName"/>
+        <TextField fx:id="last_name_textfield" layoutX="95.0" layoutY="123.0"/>
+        <Label layoutX="22.0" layoutY="164.0" text="Country"/>
+        <TextField fx:id="country_textfield" layoutX="95.0" layoutY="160.0"/>
+        <Label layoutX="22.0" layoutY="204.0" text="City"/>
+        <TextField fx:id="city_textfield" layoutX="95.0" layoutY="200.0"/>
+        <Label layoutX="22.0" layoutY="242.0" text="Street"/>
+        <TextField fx:id="street_textfield" layoutX="95.0" layoutY="238.0"/>
+        <Label layoutX="22.0" layoutY="279.0" text="Home no"/>
+        <TextField fx:id="home_no_textfield" layoutX="95.0" layoutY="275.0"/>
+        <Label layoutX="326.0" layoutY="87.0" text="Zip-code"/>
+        <TextField fx:id="zip_code_textfield" layoutX="431.0" layoutY="83.0"/>
+        <Label layoutX="326.0" layoutY="127.0" text="Contact no"/>
+        <TextField fx:id="contact_no_textfield" layoutX="431.0" layoutY="123.0"/>
+        <Label layoutX="326.0" layoutY="164.0" text="E-mail"/>
+        <TextField fx:id="email_textfield" layoutX="431.0" layoutY="160.0"/>
+        <Label layoutX="326.0" layoutY="204.0" text="Credit Card no"/>
+        <TextField fx:id="credit_card_no_textfield" layoutX="431.0" layoutY="200.0"/>
+        <Label layoutX="326.0" layoutY="242.0" text="Password"/>
+        <PasswordField fx:id="password_field" layoutX="431.0" layoutY="238.0"/>
+        <Label layoutX="326.0" layoutY="279.0" text="Confirm Password"/>
+        <PasswordField fx:id="confirm_password_field" layoutX="431.0" layoutY="275.0"/>
+        <Button fx:id="update_button" layoutX="259.0" layoutY="344.0" mnemonicParsing="false" onAction="#updateClicked"
+                text="Update Data"/>
+    </children>
+</AnchorPane>
