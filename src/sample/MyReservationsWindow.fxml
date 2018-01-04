@@ -2,41 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="622.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="sample.MyReservationsWindowController">
     <children>
-        <AnchorPane prefHeight="768.0" prefWidth="1024.0">
+        <AnchorPane layoutY="24.0" prefHeight="574.0" prefWidth="1024.0" AnchorPane.topAnchor="50.0">
             <children>
-                <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="22.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0"
-                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="Account">
-                            <items>
-                                <MenuItem fx:id="login_button" mnemonicParsing="false" onAction="#loginClicked"
-                                          text="LogIn"/>
-                                <MenuItem fx:id="settings_button" mnemonicParsing="false" onAction="#settingsClicked"
-                                          text="Settings"/>
-                                <MenuItem fx:id="close_button" mnemonicParsing="false" onAction="#closeClicked"
-                                          text="Close"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Reservations">
-                            <items>
-                                <MenuItem fx:id="new_reservatuib_button" mnemonicParsing="false"
-                                          onAction="#newReservationClicked" text="New Reservation"/>
-                                <MenuItem fx:id="my_reservations_button" mnemonicParsing="false"
-                                          onAction="#myReservationsClicked" text="My Reservations"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About"/>
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-                <TableView fx:id="tableView" layoutY="50.0" prefHeight="717.0" prefWidth="1024.0"
-                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <TableView fx:id="tableView" layoutY="50.0" prefHeight="423.0" prefWidth="1024.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0">
                     <columns>
                         <TableColumn fx:id="reservationIdColumn" prefWidth="207.0" text="Reservation ID"/>
                         <TableColumn fx:id="guestsNoColumn" prefWidth="72.0" text="Guests No"/>
@@ -47,14 +20,39 @@
                                      text="Reservation Status"/>
                     </columns>
                 </TableView>
-                <Button fx:id="filter_button" layoutX="654.0" layoutY="25.0" mnemonicParsing="false"
-                        onAction="#filterClicked" text="Filter"/>
-                <DatePicker fx:id="check_in_date_container" layoutX="72.0" layoutY="25.0"/>
-                <DatePicker fx:id="check_out_date_container" layoutX="355.0" layoutY="25.0"/>
-                <Label layoutX="15.0" layoutY="29.0" text="Check-in"/>
-                <Label layoutX="274.0" layoutY="29.0" text="Check-out"/>
             </children>
         </AnchorPane>
+        <MenuBar fx:id="menuBar" prefHeight="22.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0"
+                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                    <items>
+                        <MenuItem fx:id="settings_button" mnemonicParsing="false" onAction="#settingsClicked"
+                                  text="Settings"/>
+                        <MenuItem fx:id="close_button" mnemonicParsing="false" onAction="#closeClicked" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Reservations">
+                    <items>
+                        <MenuItem fx:id="new_reservatuib_button" mnemonicParsing="false"
+                                  onAction="#newReservationClicked" text="New Reservation"/>
+                        <MenuItem fx:id="my_reservations_button" mnemonicParsing="false"
+                                  onAction="#myReservationsClicked" text="My Reservations"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <DatePicker fx:id="check_in_date_container" layoutX="161.0" layoutY="25.0"/>
+        <Button fx:id="filter_button" layoutX="811.0" layoutY="25.0" mnemonicParsing="false" onAction="#filterClicked"
+                text="Filter"/>
+        <Label layoutX="43.0" layoutY="29.0" text="Check-in"/>
+        <Label layoutX="387.0" layoutY="29.0" text="Check-out"/>
+        <DatePicker fx:id="check_out_date_container" layoutX="493.0" layoutY="25.0"/>
     </children>
 
 </AnchorPane>

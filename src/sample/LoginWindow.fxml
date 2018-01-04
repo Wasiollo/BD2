@@ -2,15 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="256.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="sample.LoginController">
     <children>
-        <TextField fx:id="login_field" layoutX="155.0" layoutY="81.0"/>
-        <Label layoutX="91.0" layoutY="85.0" text="Login:"/>
-        <PasswordField fx:id="password_field" layoutX="155.0" layoutY="150.0"/>
-        <Label layoutX="90.0" layoutY="154.0" text="Hasło: "/>
-        <Button fx:id="login_button" layoutX="171.0" layoutY="205.0" mnemonicParsing="false" onAction="#loginClicked"
+        <TextField fx:id="login_field" layoutX="158.0" layoutY="81.0"/>
+        <Label layoutX="94.0" layoutY="85.0" text="Login:"/>
+        <PasswordField fx:id="password_field" layoutX="158.0" layoutY="150.0"/>
+        <Label layoutX="93.0" layoutY="154.0" text="Hasło: "/>
+        <Button fx:id="login_button" layoutX="177.0" layoutY="203.0" mnemonicParsing="false" onAction="#loginClicked"
                 text="LogIn"/>
-        <Label layoutX="165.0" layoutY="33.0" text="Logowanie"/>
+        <Label layoutX="171.0" layoutY="33.0" text="Logowanie"/>
     </children>
 </AnchorPane>

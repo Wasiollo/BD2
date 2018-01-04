@@ -29,6 +29,9 @@ public class Controller {
     private TableView<RoomType> tableView;
 
     @FXML
+    private MenuItem register_button;
+
+    @FXML
     private DatePicker check_out_date_container;
 
     @FXML
@@ -53,6 +56,35 @@ public class Controller {
     @FXML
     private Button search_button;
 
+    @FXML
+    private CheckBox price5CheckBox;
+
+    @FXML
+    private CheckBox price4CheckBox;
+
+    @FXML
+    private CheckBox price3CheckBox;
+
+    @FXML
+    private CheckBox price2CheckBox;
+
+    @FXML
+    private CheckBox price1CheckBox;
+
+    @FXML
+    private CheckBox guest1CheckBox;
+
+    @FXML
+    private CheckBox guest2CheckBox;
+
+    @FXML
+    private CheckBox guest3CheckBox;
+
+    @FXML
+    private CheckBox guest4CheckBox;
+
+    @FXML
+    private CheckBox guest5CheckBox;
 
     @FXML
     private TableColumn<RoomType, String> maxGuestsColumn;
@@ -70,6 +102,31 @@ public class Controller {
 
     private DbConnection dbconn;
 
+    @FXML
+    void registerClicked(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(getClass().getResource(
+                            "RegisterWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            RegisterWindowController controller = fxmlLoader.<RegisterWindowController>getController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Register Window");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.show();
+
+
+            stage.setOnCloseRequest((WindowEvent event1) -> {
+
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     void loginClicked(ActionEvent event) {
@@ -83,6 +140,7 @@ public class Controller {
             Stage stage = new Stage();
             stage.setTitle("Login Window");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.show();
 
 
@@ -109,6 +167,7 @@ public class Controller {
             Stage myreservationsstage = new Stage();
             myreservationsstage.setTitle("Login Window");
             myreservationsstage.setScene(new Scene(root1));
+            myreservationsstage.setResizable(false);
             myreservationsstage.show();
 
 
@@ -139,6 +198,7 @@ public class Controller {
             Stage stage = new Stage();
             stage.setTitle("Settings Window");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.show();
 
 
@@ -161,11 +221,44 @@ public class Controller {
     @FXML
     void filterClicked(ActionEvent event) {
 
+        // To co tu jest pokazuje jak dostać się do wartości chceckboxów
+        if (price5CheckBox.isSelected())
+            price5CheckBox.setSelected(false);
+        //TODO wyświetlić tylko te dane w tabeli które będą sfiltrowane przy pomocy checkboxów - nie widzę sensu,
+        //TODO żeby strzelać jeszcze raz do bazy. Bardziej opłaca się chyba wyfiltrować observable arrayListe. Ale może
+        //TODO to trudne
     }
 
     @FXML
     void reserveClicked(ActionEvent event) {
         //TODO wyświetlić okienko w którym będą dane rezerwacji z przyciskiem apply
+
+        try {
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(getClass().getResource(
+                            "ConfirmReservationWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            ConfirmReservationWindowController controller = fxmlLoader.<ConfirmReservationWindowController>getController();
+            controller.setFields(
+                    "King garten", //TODO poprawić tak, żeby brał z tabelki, anie na stałe
+                    check_in_date_container.getValue().toString(),
+                    check_out_date_container.getValue().toString(),
+                    "12" //TODO tak samo jak room_name
+            );
+            Stage stage = new Stage();
+            stage.setTitle("Settings Window");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.show();
+
+
+            stage.setOnCloseRequest((WindowEvent event1) -> {
+
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
