@@ -19,71 +19,71 @@ public class RegisterWindowController {
     private URL location;
 
     @FXML
-    private TextField credit_card_no_textfield;
+    private TextField creditCardNoTextfield;
 
     @FXML
-    private TextField first_name_textfiled;
+    private TextField firstNameTextfiled;
 
     @FXML
-    private Button register_button;
+    private Button registerButton;
 
     @FXML
-    private TextField login_textfield;
+    private TextField loginTextfield;
 
     @FXML
-    private TextField email_textfield;
+    private TextField emailTextfield;
 
     @FXML
-    private TextField contact_no_textfield;
+    private TextField contactNoTextfield;
 
     @FXML
-    private TextField last_name_textfield;
+    private TextField lastNameTextfield;
 
     @FXML
-    private TextField zip_code_textfield;
+    private TextField zipCodeTextfield;
 
     @FXML
-    private PasswordField password_field;
+    private PasswordField passwordField;
 
     @FXML
-    private TextField street_textfield;
+    private TextField streetTextfield;
 
     @FXML
-    private PasswordField confirm_password_field;
+    private PasswordField confirmPasswordField;
 
     @FXML
-    private TextField country_textfield;
+    private TextField countryTextfield;
 
     @FXML
-    private TextField city_textfield;
+    private TextField cityTextfield;
 
     @FXML
-    private TextField home_no_textfield;
+    private TextField homeNoTextfield;
 
     @FXML
     void registerClicked(ActionEvent event) {
-        //TODO register customer in database
+        //TODO rrejestracja customera w bazie
 
-        Stage stage = (Stage) register_button.getScene().getWindow();
+        Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void initialize() {
-        assert credit_card_no_textfield != null : "fx:id=\"credit_card_no_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert first_name_textfiled != null : "fx:id=\"first_name_textfiled\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert register_button != null : "fx:id=\"register_button\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert login_textfield != null : "fx:id=\"login_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert email_textfield != null : "fx:id=\"email_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert contact_no_textfield != null : "fx:id=\"contact_no_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert last_name_textfield != null : "fx:id=\"last_name_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert zip_code_textfield != null : "fx:id=\"zip_code_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert password_field != null : "fx:id=\"password_field\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert street_textfield != null : "fx:id=\"street_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert confirm_password_field != null : "fx:id=\"confirm_password_field\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert country_textfield != null : "fx:id=\"country_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert city_textfield != null : "fx:id=\"city_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
-        assert home_no_textfield != null : "fx:id=\"home_no_textfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert creditCardNoTextfield != null : "fx:id=\"creditCardNoTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert firstNameTextfiled != null : "fx:id=\"firstNameTextfiled\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert registerButton != null : "fx:id=\"registerButton\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert loginTextfield != null : "fx:id=\"loginTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert emailTextfield != null : "fx:id=\"emailTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert contactNoTextfield != null : "fx:id=\"contactNoTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert lastNameTextfield != null : "fx:id=\"lastNameTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert zipCodeTextfield != null : "fx:id=\"zipCodeTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert streetTextfield != null : "fx:id=\"streetTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert confirmPasswordField != null : "fx:id=\"confirmPasswordField\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert countryTextfield != null : "fx:id=\"countryTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert cityTextfield != null : "fx:id=\"cityTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
+        assert homeNoTextfield != null : "fx:id=\"homeNoTextfield\" was not injected: check your FXML file 'RegisterWindow.fxml'.";
 
     }
 }

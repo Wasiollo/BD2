@@ -5,19 +5,30 @@ import javafx.beans.property.StringProperty;
 
 public class RoomType {
 
+    private Integer type_id;
     private final StringProperty name;
-    private final StringProperty max_guests;
-    private final StringProperty total_rooms;
-    private final StringProperty room_price;
+    private Integer max_guests;
+    private Integer total_rooms;
+    private Integer room_price;
     private final StringProperty description;
 
-    public RoomType(String name, String max_guests, String total_rooms, String room_price, String description) {
+    public RoomType(Integer type_id, String name, Integer max_guests, Integer total_rooms, Integer room_price,
+                    String description) {
+        this.type_id = type_id;
         this.name = new SimpleStringProperty(name);
-        this.max_guests = new SimpleStringProperty(max_guests);
-        this.total_rooms = new SimpleStringProperty(total_rooms);
-        this.room_price = new SimpleStringProperty(room_price);
+        this.max_guests = max_guests;
+        this.total_rooms = total_rooms;
+        this.room_price = room_price;
         this.description = new SimpleStringProperty(description);
 
+    }
+
+    public Integer getType_id() {
+        return type_id;
+    }
+
+    public void setType_id(Integer type_id) {
+        this.type_id = type_id;
     }
 
     public String getName() {
@@ -32,40 +43,28 @@ public class RoomType {
         this.name.set(name);
     }
 
-    public String getMax_guests() {
-        return max_guests.get();
-    }
-
-    public StringProperty max_guestsProperty() {
+    public Integer getMax_guests() {
         return max_guests;
     }
 
-    public void setMax_guests(String max_guests) {
-        this.max_guests.set(max_guests);
+    public void setMax_guests(Integer max_guests) {
+        this.max_guests = max_guests;
     }
 
-    public String getTotal_rooms() {
-        return total_rooms.get();
-    }
-
-    public StringProperty total_roomsProperty() {
+    public Integer getTotal_rooms() {
         return total_rooms;
     }
 
-    public void setTotal_rooms(String total_rooms) {
-        this.total_rooms.set(total_rooms);
+    public void setTotal_rooms(Integer total_rooms) {
+        this.total_rooms = total_rooms;
     }
 
-    public String getRoom_price() {
-        return room_price.get();
-    }
-
-    public StringProperty room_priceProperty() {
+    public Integer getRoom_price() {
         return room_price;
     }
 
-    public void setRoom_price(String room_price) {
-        this.room_price.set(room_price);
+    public void setRoom_price(Integer room_price) {
+        this.room_price = room_price;
     }
 
     public String getDescription() {

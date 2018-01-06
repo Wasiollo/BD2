@@ -1,124 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<GridPane alignment="center" hgap="10" prefHeight="622.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="622.0" prefWidth="1024.0"
+          vgap="10" xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
     <columnConstraints>
-        <ColumnConstraints />
+        <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
+        <RowConstraints/>
     </rowConstraints>
     <children>
         <AnchorPane prefHeight="629.0" prefWidth="1024.0">
             <children>
-                <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="22.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="22.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0"
+                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <menus>
                         <Menu mnemonicParsing="false" text="Account">
                             <items>
-                                <MenuItem fx:id="login_button" mnemonicParsing="false" onAction="#loginClicked" text="LogIn" />
-                                <MenuItem fx:id="register_button" mnemonicParsing="false" onAction="#registerClicked" text="Register" />
-                                <MenuItem fx:id="settings_button" mnemonicParsing="false" onAction="#settingsClicked" text="Settings" />
-                                <MenuItem fx:id="close_button" mnemonicParsing="false" onAction="#closeClicked" text="Close" />
+                                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginClicked"
+                                          text="LogIn"/>
+                                <MenuItem fx:id="registerButton" mnemonicParsing="false" onAction="#registerClicked"
+                                          text="Register"/>
+                                <MenuItem fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsClicked"
+                                          text="Settings"/>
+                                <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked"
+                                          text="Close"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Reservations">
                             <items>
-                                <MenuItem fx:id="new_reservatuib_button" mnemonicParsing="false" onAction="#newReservationClicked" text="New Reservation" />
-                                <MenuItem fx:id="my_reservations_button" mnemonicParsing="false" onAction="#myReservationsClicked" text="My Reservations" />
+                                <MenuItem fx:id="myReservationsButton" mnemonicParsing="false"
+                                          onAction="#myReservationsClicked" text="My Reservations"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="About" />
+                                <MenuItem mnemonicParsing="false" text="About"/>
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
-                <TableView fx:id="tableView" layoutY="50.0" prefHeight="469.0" prefWidth="762.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="50.0">
+                <TableView fx:id="tableView" layoutY="50.0" prefHeight="469.0" prefWidth="762.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="175.0" text="Name" />
-                        <TableColumn fx:id="maxGuestsColumn" prefWidth="71.0" text="Max Guests" />
-                        <TableColumn fx:id="priceColumn" prefWidth="89.0" text="Price" />
-                        <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="423.0" text="Description" />
+                        <TableColumn fx:id="nameColumn" prefWidth="175.0" text="Name"/>
+                        <TableColumn fx:id="maxGuestsColumn" prefWidth="71.0" text="Max Guests"/>
+                        <TableColumn fx:id="priceColumn" prefWidth="89.0" text="Price"/>
+                        <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="423.0" text="Description"/>
                     </columns>
                 </TableView>
-                <Button fx:id="filter_button" layoutX="872.0" layoutY="563.0" mnemonicParsing="false" onAction="#filterClicked" text="Filter" />
-                <Button fx:id="reserve_button" layoutX="351.0" layoutY="551.0" mnemonicParsing="false" onAction="#reserveClicked" text="Reserve" />
-                <DatePicker fx:id="check_in_date_container" layoutX="72.0" layoutY="25.0" />
-                <DatePicker fx:id="check_out_date_container" layoutX="355.0" layoutY="25.0" />
-                <Label layoutX="15.0" layoutY="29.0" text="Check-in" />
-                <Label layoutX="274.0" layoutY="29.0" text="Check-out" />
-                <Button fx:id="search_button" layoutX="641.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchClicked" text="Search" />
-                <TreeView fx:id="filterTreeView" editable="true" layoutX="762.0" layoutY="50.0" prefHeight="469.0" prefWidth="262.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                   <root>
-                       <TreeItem value="Filter">
-                           <children>
-                           <TreeItem value="Max Guests">
-                               <children>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="guest1CheckBox" prefWidth="180.0" text="1" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="guest2CheckBox" prefWidth="180.0" text="2" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="guest3CheckBox" prefWidth="180.0" text="3" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="guest4CheckBox" prefWidth="180.0" text="4" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="guest5CheckBox" prefWidth="180.0" text="5 or more" />
-                                       </value>
-                                   </TreeItem>
-                               </children>
-                           </TreeItem>
-                           </children>
-                           <children>
-                           <TreeItem value="Price">
-                               <children>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="price1CheckBox" prefWidth="180.0" text="100" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="price2CheckBox" prefWidth="180.0" text="100-200" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="price3CheckBox" prefWidth="180.0" text="200-500" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="price4CheckBox" prefWidth="180.0" text="500-1000" />
-                                       </value>
-                                   </TreeItem>
-                                   <TreeItem>
-                                       <value>
-                                           <CheckBox fx:id="price5CheckBox" prefWidth="180.0" text="&gt;1000" />
-                                       </value>
-                                   </TreeItem>
-                               </children>
-                           </TreeItem>
-                           </children>
-                       </TreeItem>
-                   </root>
+                <Button fx:id="filterButton" layoutX="872.0" layoutY="563.0" mnemonicParsing="false"
+                        onAction="#filterClicked" text="Filter"/>
+                <Button fx:id="reserveButton" layoutX="351.0" layoutY="551.0" mnemonicParsing="false"
+                        onAction="#reserveClicked" text="Reserve"/>
+                <DatePicker fx:id="checkInDateContainer" layoutX="72.0" layoutY="25.0"/>
+                <DatePicker fx:id="checkOutDateContainer" layoutX="355.0" layoutY="25.0"/>
+                <Label layoutX="15.0" layoutY="29.0" text="Check-in"/>
+                <Label layoutX="274.0" layoutY="29.0" text="Check-out"/>
+                <Button fx:id="searchButton" layoutX="641.0" layoutY="25.0" mnemonicParsing="false"
+                        onAction="#searchClicked" text="Search"/>
+                <TreeView fx:id="filterTreeView" editable="true" layoutX="762.0" layoutY="50.0" prefHeight="469.0"
+                          prefWidth="262.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="50.0">
+                    <root>
+                        <TreeItem value="Filter">
+                            <children>
+                                <TreeItem value="Max Guests">
+                                    <children>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="guest1CheckBox" prefWidth="180.0" text="1"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="guest2CheckBox" prefWidth="180.0" text="2"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="guest3CheckBox" prefWidth="180.0" text="3"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="guest4CheckBox" prefWidth="180.0" text="4"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="guest5CheckBox" prefWidth="180.0" text="5 or more"/>
+                                            </value>
+                                        </TreeItem>
+                                    </children>
+                                </TreeItem>
+                            </children>
+                            <children>
+                                <TreeItem value="Price">
+                                    <children>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="price1CheckBox" prefWidth="180.0" text="100"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="price2CheckBox" prefWidth="180.0" text="100-200"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="price3CheckBox" prefWidth="180.0" text="200-500"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="price4CheckBox" prefWidth="180.0" text="500-1000"/>
+                                            </value>
+                                        </TreeItem>
+                                        <TreeItem>
+                                            <value>
+                                                <CheckBox fx:id="price5CheckBox" prefWidth="180.0" text="&gt;1000"/>
+                                            </value>
+                                        </TreeItem>
+                                    </children>
+                                </TreeItem>
+                            </children>
+                        </TreeItem>
+                    </root>
                 </TreeView>
             </children>
         </AnchorPane>

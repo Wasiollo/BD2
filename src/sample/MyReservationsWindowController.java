@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,28 +19,28 @@ public class MyReservationsWindowController {
     private URL location;
 
     @FXML
-    private MenuItem settings_button;
+    private MenuItem settingsButton;
 
     @FXML
-    private MenuItem login_button;
+    private MenuItem loginButton;
 
     @FXML
-    private DatePicker check_in_date_container;
+    private DatePicker checkInDateContainer;
 
     @FXML
     private TableColumn<?, ?> departureDateColumn;
 
     @FXML
-    private MenuItem new_reservatuib_button;
+    private MenuItem newReservationButton;
 
     @FXML
     private TableView<?> tableView;
 
     @FXML
-    private TableColumn<?, ?> arivaldateColumn;
+    private TableColumn<?, ?> arivalDateColumn;
 
     @FXML
-    private DatePicker check_out_date_container;
+    private DatePicker checkOutDateContainer;
 
     @FXML
     private TableColumn<?, ?> reservationIdColumn;
@@ -51,69 +52,61 @@ public class MyReservationsWindowController {
     private MenuBar menuBar;
 
     @FXML
-    private MenuItem close_button;
+    private MenuItem closeButton;
 
     @FXML
-    private Button filter_button;
+    private Button filterButton;
 
-    @FXML
-    private MenuItem my_reservations_button;
 
     @FXML
     private TableColumn<?, ?> guestsNoColumn;
 
     @FXML
-    void loginClicked(ActionEvent event) {
-
-    }
-
-    @FXML
     void settingsClicked(ActionEvent event) {
-
+        new Controller().settingsClicked(event);
     }
 
     @FXML
     void closeClicked(ActionEvent event) {
-
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML
     void newReservationClicked(ActionEvent event) {
-        Stage stage = (Stage) filter_button.getScene().getWindow();
+        Stage stage = (Stage) filterButton.getScene().getWindow();
         stage.fireEvent(
                 new WindowEvent(
                         stage,
-                        WindowEvent.WINDOW_CLOSE_REQUEST
+                        WindowEvent.WINDOW_HIDING
                 )
         );
-    }
-
-    @FXML
-    void myReservationsClicked(ActionEvent event) {
-
+        stage.close();
     }
 
     @FXML
     void filterClicked(ActionEvent event) {
 
+        //TODO button clicked event do pokazania rezerwacji w przedziale czasu
+        //TODO moim zdaniem bez dodatkowych filtrów
+
     }
 
     @FXML
     void initialize() {
-        assert settings_button != null : "fx:id=\"settings_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert login_button != null : "fx:id=\"login_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert check_in_date_container != null : "fx:id=\"check_in_date_container\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert checkInDateContainer != null : "fx:id=\"checkInDateContainer\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert departureDateColumn != null : "fx:id=\"departureDateColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert new_reservatuib_button != null : "fx:id=\"new_reservatuib_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert newReservationButton != null : "fx:id=\"newReservationButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert tableView != null : "fx:id=\"tableView\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert arivaldateColumn != null : "fx:id=\"arivaldateColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert check_out_date_container != null : "fx:id=\"check_out_date_container\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert arivalDateColumn != null : "fx:id=\"arivalDateColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert checkOutDateContainer != null : "fx:id=\"checkOutDateContainer\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert reservationIdColumn != null : "fx:id=\"reservationIdColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert reservationStatusColumn != null : "fx:id=\"reservationStatusColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert menuBar != null : "fx:id=\"menuBar\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert close_button != null : "fx:id=\"close_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert filter_button != null : "fx:id=\"filter_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert my_reservations_button != null : "fx:id=\"my_reservations_button\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert closeButton != null : "fx:id=\"closeButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
+        assert filterButton != null : "fx:id=\"filterButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert guestsNoColumn != null : "fx:id=\"guestsNoColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
 
     }

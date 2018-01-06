@@ -18,21 +18,19 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Account">
                             <items>
-                                <MenuItem fx:id="login_button" mnemonicParsing="false" onAction="#loginClicked"
+                                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginClicked"
                                           text="LogIn"/>
-                                <MenuItem fx:id="register_button" mnemonicParsing="false" onAction="#registerClicked"
+                                <MenuItem fx:id="registerButton" mnemonicParsing="false" onAction="#registerClicked"
                                           text="Register"/>
-                                <MenuItem fx:id="settings_button" mnemonicParsing="false" onAction="#settingsClicked"
+                                <MenuItem fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsClicked"
                                           text="Settings"/>
-                                <MenuItem fx:id="close_button" mnemonicParsing="false" onAction="#closeClicked"
+                                <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked"
                                           text="Close"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Reservations">
                             <items>
-                                <MenuItem fx:id="new_reservatuib_button" mnemonicParsing="false"
-                                          onAction="#newReservationClicked" text="New Reservation"/>
-                                <MenuItem fx:id="my_reservations_button" mnemonicParsing="false"
+                                <MenuItem fx:id="myReservationsButton" mnemonicParsing="false"
                                           onAction="#myReservationsClicked" text="My Reservations"/>
                             </items>
                         </Menu>
@@ -52,15 +50,15 @@
                         <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="423.0" text="Description"/>
                     </columns>
                 </TableView>
-                <Button fx:id="filter_button" layoutX="872.0" layoutY="563.0" mnemonicParsing="false"
+                <Button fx:id="filterButton" layoutX="872.0" layoutY="563.0" mnemonicParsing="false"
                         onAction="#filterClicked" text="Filter"/>
-                <Button fx:id="reserve_button" layoutX="351.0" layoutY="551.0" mnemonicParsing="false"
+                <Button fx:id="reserveButton" layoutX="351.0" layoutY="551.0" mnemonicParsing="false"
                         onAction="#reserveClicked" text="Reserve"/>
-                <DatePicker fx:id="check_in_date_container" layoutX="72.0" layoutY="25.0"/>
-                <DatePicker fx:id="check_out_date_container" layoutX="355.0" layoutY="25.0"/>
+                <DatePicker fx:id="checkInDateContainer" layoutX="72.0" layoutY="25.0"/>
+                <DatePicker fx:id="checkOutDateContainer" layoutX="355.0" layoutY="25.0"/>
                 <Label layoutX="15.0" layoutY="29.0" text="Check-in"/>
                 <Label layoutX="274.0" layoutY="29.0" text="Check-out"/>
-                <Button fx:id="search_button" layoutX="641.0" layoutY="25.0" mnemonicParsing="false"
+                <Button fx:id="searchButton" layoutX="641.0" layoutY="25.0" mnemonicParsing="false"
                         onAction="#searchClicked" text="Search"/>
                 <TreeView fx:id="filterTreeView" editable="true" layoutX="762.0" layoutY="50.0" prefHeight="469.0"
                           prefWidth="262.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="0.0"

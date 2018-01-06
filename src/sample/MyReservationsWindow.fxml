@@ -13,7 +13,7 @@
                     <columns>
                         <TableColumn fx:id="reservationIdColumn" prefWidth="207.0" text="Reservation ID"/>
                         <TableColumn fx:id="guestsNoColumn" prefWidth="72.0" text="Guests No"/>
-                        <TableColumn fx:id="arivaldateColumn" prefWidth="237.0" text="Arrival Date"/>
+                        <TableColumn fx:id="arivalDateColumn" prefWidth="237.0" text="Arrival Date"/>
                         <TableColumn fx:id="departureDateColumn" minWidth="0.0" prefWidth="261.0"
                                      text="Departure Date"/>
                         <TableColumn fx:id="reservationStatusColumn" minWidth="0.0" prefWidth="246.0"
@@ -27,17 +27,15 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Account">
                     <items>
-                        <MenuItem fx:id="settings_button" mnemonicParsing="false" onAction="#settingsClicked"
+                        <MenuItem fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsClicked"
                                   text="Settings"/>
-                        <MenuItem fx:id="close_button" mnemonicParsing="false" onAction="#closeClicked" text="Close"/>
+                        <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked" text="Close"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Reservations">
                     <items>
-                        <MenuItem fx:id="new_reservatuib_button" mnemonicParsing="false"
-                                  onAction="#newReservationClicked" text="New Reservation"/>
-                        <MenuItem fx:id="my_reservations_button" mnemonicParsing="false"
-                                  onAction="#myReservationsClicked" text="My Reservations"/>
+                        <MenuItem fx:id="newReservationButton" mnemonicParsing="false" onAction="#newReservationClicked"
+                                  text="New Reservation"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -47,12 +45,12 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <DatePicker fx:id="check_in_date_container" layoutX="161.0" layoutY="25.0"/>
-        <Button fx:id="filter_button" layoutX="811.0" layoutY="25.0" mnemonicParsing="false" onAction="#filterClicked"
+        <DatePicker fx:id="checkInDateContainer" layoutX="161.0" layoutY="25.0"/>
+        <Button fx:id="filterButton" layoutX="811.0" layoutY="25.0" mnemonicParsing="false" onAction="#filterClicked"
                 text="Filter"/>
         <Label layoutX="43.0" layoutY="29.0" text="Check-in"/>
         <Label layoutX="387.0" layoutY="29.0" text="Check-out"/>
-        <DatePicker fx:id="check_out_date_container" layoutX="493.0" layoutY="25.0"/>
+        <DatePicker fx:id="checkOutDateContainer" layoutX="493.0" layoutY="25.0"/>
     </children>
 
 </AnchorPane>

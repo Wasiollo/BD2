@@ -20,41 +20,41 @@ import java.sql.SQLException;
 public class Controller {
 
     @FXML
-    private MenuItem settings_button;
+    private MenuItem settingsButton;
 
     @FXML
-    private MenuItem login_button;
+    private MenuItem loginButton;
 
     @FXML
     private TableView<RoomType> tableView;
 
     @FXML
-    private MenuItem register_button;
+    private MenuItem registerButton;
 
     @FXML
-    private DatePicker check_out_date_container;
+    private DatePicker checkOutDateContainer;
 
     @FXML
-    private MenuItem my_reservations_button;
+    private MenuItem myReservationsButton;
 
     @FXML
     private MenuBar menuBar;
 
     @FXML
-    private Button reserve_button;
+    private Button reserveButton;
 
     @FXML
-    private DatePicker check_in_date_container;
+    private DatePicker checkInDateContainer;
 
     @FXML
-    private MenuItem close_button;
+    private MenuItem closeButton;
 
 
     @FXML
-    private Button filter_button;
+    private Button filterButton;
 
     @FXML
-    private Button search_button;
+    private Button searchButton;
 
     @FXML
     private CheckBox price5CheckBox;
@@ -117,10 +117,8 @@ public class Controller {
             stage.setResizable(false);
             stage.show();
 
-
             stage.setOnCloseRequest((WindowEvent event1) -> {
-
-            });
+            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,6 +128,13 @@ public class Controller {
 
     @FXML
     void loginClicked(ActionEvent event) {
+
+        //TODO prawdoopodnie trzeba stworzyć obiekt customera, który miałby dane wyciągnięte z bazy podczas logowania
+        //TODO nie wiem czy nie przy inicjalizacji projektu i przekazywać go sobie między kontrolerami okienek.
+        //TODO bo bez tego okienko settings i my reservation cale bedzie biedą.
+        //TODO Zainicjalizować go nullami i w logowaniu setować realnymi wartoścami. Wiem że obvious ale lepiej
+        //TODO napisać.
+
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
@@ -143,10 +148,8 @@ public class Controller {
             stage.setResizable(false);
             stage.show();
 
-
             stage.setOnCloseRequest((WindowEvent event1) -> {
-
-            });
+            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,7 +158,10 @@ public class Controller {
 
     @FXML
     void myReservationsClicked(ActionEvent event) {
-        Stage stage = (Stage) reserve_button.getScene().getWindow();
+
+        //TODO przekazanie obiektu customera tak jak pisałem wcześniej??
+
+        Stage stage = (Stage) reserveButton.getScene().getWindow();
         stage.hide();
         try {
             FXMLLoader fxmlLoader =
@@ -164,16 +170,19 @@ public class Controller {
             Parent root1 = (Parent) fxmlLoader.load();
             MyReservationsWindowController controller = fxmlLoader.<MyReservationsWindowController>getController();
 
-            Stage myreservationsstage = new Stage();
-            myreservationsstage.setTitle("Login Window");
-            myreservationsstage.setScene(new Scene(root1));
-            myreservationsstage.setResizable(false);
-            myreservationsstage.show();
+            Stage myReservationsStage = new Stage();
+            myReservationsStage.setTitle("My Reservations");
+            myReservationsStage.setScene(new Scene(root1));
+            myReservationsStage.setResizable(false);
+            myReservationsStage.show();
 
-
-            myreservationsstage.setOnCloseRequest((WindowEvent event1) -> {
+            myReservationsStage.setOnHiding((WindowEvent event1) -> {
                 stage.show();
             });
+            myReservationsStage.setOnCloseRequest((WindowEvent event2) -> {
+                Platform.exit();
+                System.exit(0);
+            }); // Przypadki gdy zamykamy albo chowamy okienko obsłużone WindowEventami i Lambdami
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,12 +191,10 @@ public class Controller {
 
 
     @FXML
-    void newReservationClicked(ActionEvent event) {
-
-    }
-
-    @FXML
     void settingsClicked(ActionEvent event) {
+
+        //TODO przeniesienie obiektu customera ??
+
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
@@ -203,8 +210,7 @@ public class Controller {
 
 
             stage.setOnCloseRequest((WindowEvent event1) -> {
-
-            });
+            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,36 +231,39 @@ public class Controller {
         if (price5CheckBox.isSelected())
             price5CheckBox.setSelected(false);
         //TODO wyświetlić tylko te dane w tabeli które będą sfiltrowane przy pomocy checkboxów - nie widzę sensu,
-        //TODO żeby strzelać jeszcze raz do bazy. Bardziej opłaca się chyba wyfiltrować observable arrayListe. Ale może
-        //TODO to trudne
+        //TODO żeby strzelać jeszcze raz do bazy. Bardziej opłaca się chyba wyfiltrować observable arrayListe.
+        //TODO Ale może to trudne.
     }
 
     @FXML
     void reserveClicked(ActionEvent event) {
-        //TODO wyświetlić okienko w którym będą dane rezerwacji z przyciskiem apply
 
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "ConfirmReservationWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            ConfirmReservationWindowController controller = fxmlLoader.<ConfirmReservationWindowController>getController();
+            ConfirmReservationWindowController controller =
+                    fxmlLoader.<ConfirmReservationWindowController>getController();
+
+            ObservableList oList = tableView.getItems();
+            RoomType temp = (RoomType) oList.get(tableView.getSelectionModel().getSelectedIndex());
+
             controller.setFields(
-                    "King garten", //TODO poprawić tak, żeby brał z tabelki, anie na stałe
-                    check_in_date_container.getValue().toString(),
-                    check_out_date_container.getValue().toString(),
-                    "12" //TODO tak samo jak room_name
+                    temp.getName(),
+                    checkInDateContainer.getValue().toString(),
+                    checkOutDateContainer.getValue().toString(),
+                    temp.getMax_guests(),
+                    temp.getRoom_price()
             );
             Stage stage = new Stage();
-            stage.setTitle("Settings Window");
+            stage.setTitle("Confirm");
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
             stage.show();
 
-
             stage.setOnCloseRequest((WindowEvent event1) -> {
-
-            });
+            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -267,7 +276,11 @@ public class Controller {
     void searchClicked(ActionEvent event) {
 
         //TODO REFORMAT TEGO KODU I ZAPYTAANIE WYCIAGAJĄCE DANE Z BAZY OGRANICZONYCH DO KONKRETNEGO PRZEDZIALU DAT
-        //TODO WYCIAGNIETYFH Z ODPOWIEDNICH PÓl
+        //TODO WYCIAGNIETYCH Z ODPOWIEDNICH PÓl
+        //TODO zastanowic się czy sensowne jest zachowanie, gdzie najpierw filtrujemy i potem klikamy search.
+        //TODO co wyciągnęło by dane już zfiltrowane, ale nie wiem czy nie skomplikuje nam to zapytania
+        //TODO ewentualnie jak jest picknięte w filtrach to pofiltrowac dane po pobraniu i dopiero dac do tabeli
+        //TODO dodać sprawdzanie czy coś jest w date_pickerach bo jeśli nie to nie robić nic moim zdaniem
 
         try {
             Connection conn = dbconn.getConnection();
@@ -275,8 +288,8 @@ public class Controller {
 
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM mydb.room_type");
             while (rs.next()) {
-                data.add(new RoomType(rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6)));
+                data.add(new RoomType(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                        rs.getInt(4), rs.getInt(5), rs.getString(6)));
             }
 
         } catch (SQLException ex) {
@@ -294,13 +307,13 @@ public class Controller {
     @FXML
     void initialize() {
         assert menuBar != null : "fx:id=\"menuBar\" was not injected: check your FXML file 'sample.fxml'.";
-        assert reserve_button != null : "fx:id=\"reserve_button\" was not injected: check your FXML file 'sample.fxml'.";
-        assert check_in_date_container != null : "fx:id=\"chceck_in_date_container\" was not injected: check your FXML file 'sample.fxml'.";
+        assert reserveButton != null : "fx:id=\"reserveButton\" was not injected: check your FXML file 'sample.fxml'.";
+        assert checkInDateContainer != null : "fx:id=\"chceck_in_date_container\" was not injected: check your FXML file 'sample.fxml'.";
         assert nameColumn != null : "fx:id=\"nameColumn\" was not injected: check your FXML file 'sample.fxml'.";
-        assert filter_button != null : "fx:id=\"filter_button\" was not injected: check your FXML file 'sample.fxml'.";
-        assert search_button != null : "fx:id=\"search_button\" was not injected: check your FXML file 'sample.fxml'.";
+        assert filterButton != null : "fx:id=\"filterButton\" was not injected: check your FXML file 'sample.fxml'.";
+        assert searchButton != null : "fx:id=\"searchButton\" was not injected: check your FXML file 'sample.fxml'.";
         assert tableView != null : "fx:id=\"tableView\" was not injected: check your FXML file 'sample.fxml'.";
-        assert check_out_date_container != null : "fx:id=\"check_out_date_container\" was not injected: check your FXML file 'sample.fxml'.";
+        assert checkOutDateContainer != null : "fx:id=\"checkOutDateContainer\" was not injected: check your FXML file 'sample.fxml'.";
         assert maxGuestsColumn != null : "fx:id=\"maxGuestsColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert priceColumn != null : "fx:id=\"priceColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert descriptionColumn != null : "fx:id=\"descriptionColumn\" was not injected: check your FXML file 'sample.fxml'.";

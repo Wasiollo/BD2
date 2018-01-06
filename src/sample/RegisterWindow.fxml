@@ -7,32 +7,32 @@
     <children>
         <Label layoutX="132.0" layoutY="27.0" text="Registration"/>
         <Label layoutX="35.0" layoutY="71.0" text="Login" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="login_textfield" layoutX="145.0" layoutY="67.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="loginTextfield" layoutX="145.0" layoutY="67.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="38.0" layoutY="106.0" text="Password" AnchorPane.leftAnchor="35.0"/>
-        <PasswordField fx:id="password_field" layoutX="150.0" layoutY="102.0" AnchorPane.rightAnchor="30.0"/>
+        <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="102.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="40.0" layoutY="144.0" text="Confirm Password" AnchorPane.leftAnchor="35.0"/>
-        <PasswordField fx:id="confirm_password_field" layoutX="145.0" layoutY="140.0" AnchorPane.rightAnchor="30.0"/>
+        <PasswordField fx:id="confirmPasswordField" layoutX="145.0" layoutY="140.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="42.0" layoutY="181.0" text="E-mail" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="email_textfield" layoutX="147.0" layoutY="177.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="emailTextfield" layoutX="147.0" layoutY="177.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="34.0" layoutY="236.0" text="First Name" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="first_name_textfiled" layoutX="107.0" layoutY="232.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="firstNameTextfiled" layoutX="107.0" layoutY="232.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="34.0" layoutY="276.0" text="LastName" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="last_name_textfield" layoutX="107.0" layoutY="272.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="lastNameTextfield" layoutX="107.0" layoutY="272.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="34.0" layoutY="313.0" text="Country" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="country_textfield" layoutX="107.0" layoutY="309.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="countryTextfield" layoutX="107.0" layoutY="309.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="34.0" layoutY="353.0" text="City" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="city_textfield" layoutX="107.0" layoutY="349.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="cityTextfield" layoutX="107.0" layoutY="349.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="34.0" layoutY="391.0" text="Street" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="street_textfield" layoutX="107.0" layoutY="387.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="streetTextfield" layoutX="107.0" layoutY="387.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="30.0" layoutY="426.0" text="Home no" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="home_no_textfield" layoutX="135.0" layoutY="422.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="homeNoTextfield" layoutX="135.0" layoutY="422.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="30.0" layoutY="466.0" text="Zip-code" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="zip_code_textfield" layoutX="135.0" layoutY="462.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="zipCodeTextfield" layoutX="135.0" layoutY="462.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="30.0" layoutY="506.0" text="Contact no" AnchorPane.leftAnchor="35.0"/>
-        <TextField fx:id="contact_no_textfield" layoutX="135.0" layoutY="502.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="contactNoTextfield" layoutX="135.0" layoutY="502.0" AnchorPane.rightAnchor="30.0"/>
         <Label layoutX="33.0" layoutY="546.0" text="Credit Card no" AnchorPane.leftAnchor="33.0"/>
-        <TextField fx:id="credit_card_no_textfield" layoutX="149.0" layoutY="542.0" AnchorPane.rightAnchor="30.0"/>
-        <Button fx:id="register_button" layoutX="121.0" layoutY="598.0" mnemonicParsing="false"
+        <TextField fx:id="creditCardNoTextfield" layoutX="149.0" layoutY="542.0" AnchorPane.rightAnchor="30.0"/>
+        <Button fx:id="registerButton" layoutX="121.0" layoutY="598.0" mnemonicParsing="false"
                 onAction="#registerClicked" text="Register User"/>
     </children>
 </AnchorPane>
