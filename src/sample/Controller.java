@@ -102,6 +102,8 @@ public class Controller {
 
     private DbConnection dbconn;
 
+    private Customer currentCustomer;
+
     @FXML
     void registerClicked(ActionEvent event) {
         try {
@@ -110,6 +112,7 @@ public class Controller {
                             "RegisterWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             RegisterWindowController controller = fxmlLoader.<RegisterWindowController>getController();
+            controller.setDbConnection(dbconn);
 
             Stage stage = new Stage();
             stage.setTitle("Register Window");
@@ -141,6 +144,7 @@ public class Controller {
                             "LoginWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             LoginController controller = fxmlLoader.<LoginController>getController();
+            controller.setDbConnection(dbconn);
 
             Stage stage = new Stage();
             stage.setTitle("Login Window");
@@ -149,6 +153,14 @@ public class Controller {
             stage.show();
 
             stage.setOnCloseRequest((WindowEvent event1) -> {
+                currentCustomer = controller.getCustomer();
+                //System.out.println("Current logged in customer: " + currentCustomer.login);
+
+                if(currentCustomer.logged) {
+                    settingsButton.setDisable(false);
+                    reserveButton.setDisable(false);
+                }
+
             }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
 
         } catch (Exception e) {
@@ -169,12 +181,17 @@ public class Controller {
                             "MyReservationsWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             MyReservationsWindowController controller = fxmlLoader.<MyReservationsWindowController>getController();
+            controller.setDbConnection(dbconn);
+            controller.setCustomer(currentCustomer);
+            //controller.displayData();
 
             Stage myReservationsStage = new Stage();
             myReservationsStage.setTitle("My Reservations");
             myReservationsStage.setScene(new Scene(root1));
             myReservationsStage.setResizable(false);
             myReservationsStage.show();
+
+            controller.displayData();
 
             myReservationsStage.setOnHiding((WindowEvent event1) -> {
                 stage.show();
@@ -193,14 +210,15 @@ public class Controller {
     @FXML
     void settingsClicked(ActionEvent event) {
 
-        //TODO przeniesienie obiektu customera ??
-
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "SettingsWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             SettingsWindowController controller = fxmlLoader.<SettingsWindowController>getController();
+            controller.setDbConnection(dbconn);
+            controller.setCustomer(currentCustomer);
+            controller.displayCustomerData();
 
             Stage stage = new Stage();
             stage.setTitle("Settings Window");
@@ -210,7 +228,7 @@ public class Controller {
 
 
             stage.setOnCloseRequest((WindowEvent event1) -> {
-            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -245,11 +263,14 @@ public class Controller {
             Parent root1 = (Parent) fxmlLoader.load();
             ConfirmReservationWindowController controller =
                     fxmlLoader.<ConfirmReservationWindowController>getController();
+            controller.setDbConnection(dbconn);
+            controller.setCustomer(currentCustomer);
 
             ObservableList oList = tableView.getItems();
             RoomType temp = (RoomType) oList.get(tableView.getSelectionModel().getSelectedIndex());
 
             controller.setFields(
+                    temp.getType_id(),
                     temp.getName(),
                     checkInDateContainer.getValue().toString(),
                     checkOutDateContainer.getValue().toString(),
@@ -318,5 +339,8 @@ public class Controller {
         assert priceColumn != null : "fx:id=\"priceColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert descriptionColumn != null : "fx:id=\"descriptionColumn\" was not injected: check your FXML file 'sample.fxml'.";
         dbconn = new DbConnection();
+        currentCustomer = new Customer();
+        settingsButton.setDisable(true);
+        reserveButton.setDisable(true);
     }
 }

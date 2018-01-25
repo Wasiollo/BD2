@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ConfirmReservationWindowController {
@@ -31,8 +34,15 @@ public class ConfirmReservationWindowController {
     @FXML
     private Label priceLabel;
 
-    public void setFields(String room_name, String arrival_date, String departure_date,
+    private Integer roomTypeId;
+
+    private DbConnection dbconn;
+
+    private Customer customer;
+
+    public void setFields(Integer id, String room_name, String arrival_date, String departure_date,
                           Integer max_guest_no, Integer price) {
+        this.roomTypeId = id;
         this.roomNameLabel.setText(room_name);
         this.arrivalDateLabel.setText(arrival_date);
         this.departureDateLabel.setText(departure_date);
@@ -43,10 +53,43 @@ public class ConfirmReservationWindowController {
     @FXML
     void confirmClicked(ActionEvent event) {
 
-        //TODO ustawić rezerwację na bazie
+        Connection conn = dbconn.getConnection();
+
+        try {
+            ResultSet res = conn.createStatement().executeQuery("SELECT room_no FROM mydb.room " +
+                    "WHERE mydb.room.type_id = " + roomTypeId.toString()
+                    + " AND room_no NOT IN (SELECT room_no FROM mydb.reservation);");
+
+            String reserved_room = "";
+
+            if(res.next())
+            {
+                reserved_room = res.getString(1);
+            }
+
+            conn.createStatement().executeUpdate("INSERT INTO mydb.reservation " + " VALUES (DEFAULT, "
+                    + "'CONFIRMED', "
+                    + reserved_room + ", "
+                    + "1, "
+                    + "'" + customer.cust_id + "', "
+                    + guestNoTextField.getText() + ", "
+                    + "'" + arrivalDateLabel.getText() + "', "
+                    + "'" + departureDateLabel.getText() + "');");
+        }
+        catch(SQLException e) {
+            System.err.println("Error" + e);
+        }
 
         Stage stage = (Stage) confirmButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void setDbConnection(DbConnection dbc) {
+        this.dbconn = dbc;
+    }
+
+    public void setCustomer(Customer cus) {
+        this.customer = cus;
     }
 
     @FXML

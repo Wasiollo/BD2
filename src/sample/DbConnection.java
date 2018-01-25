@@ -33,8 +33,4 @@ public class DbConnection {
     public Connection getConnection() {
         return this.connection;
     }
-
-    //TODO dodać metodę executeSelectQuery, które zwróci ResultSet
-    //TODO dodać metodę executeQuery (void)
-    //TODO tak myśle, chyba, że chcecie inaczej
 }

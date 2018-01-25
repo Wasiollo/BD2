@@ -2,12 +2,14 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -27,13 +29,58 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
+    private DbConnection dbconn;
+
+    private Customer customer;
+
     @FXML
     void loginClicked(ActionEvent event) {
 
-        //TODO napisać zapytanie które łączy się z bazą i sprawdza poprawność loginu i hasła
+        Connection conn = dbconn.getConnection();
+
+        try {
+            ResultSet res = conn.createStatement().executeQuery("SELECT customer_id, password FROM mydb.customer WHERE username = '"
+                    + loginField.getText() + "';");
+
+            if(res.next())
+            {
+                if(res.getString(2).equals(passwordField.getText()))
+                {
+                    customer = new Customer(loginField.getText(), res.getString(1), true);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Login successful", ButtonType.OK);
+                    alert.showAndWait();
+                }
+
+                else
+                {
+                    customer = new Customer();
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Wrong password", ButtonType.OK);
+                    alert.showAndWait();
+                }
+            }
+        }
+        catch(SQLException e) {
+            System.err.println("Error" + e);
+        }
 
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(
+                        stage,
+                        WindowEvent.WINDOW_CLOSE_REQUEST
+                )
+        );
+        //stage.close();
+    }
+
+    public void setDbConnection(DbConnection dbc) {
+        this.dbconn = dbc;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
     }
 
     @FXML

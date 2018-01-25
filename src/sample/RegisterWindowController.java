@@ -7,7 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.ConnectException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterWindowController {
@@ -60,12 +63,42 @@ public class RegisterWindowController {
     @FXML
     private TextField homeNoTextfield;
 
+    private DbConnection dbconn;
+
     @FXML
     void registerClicked(ActionEvent event) {
         //TODO rrejestracja customera w bazie
 
+        Connection conn = dbconn.getConnection();
+
+        final String columns = "(customer_id, first_name, last_name," +
+                "country, city, street, home_no, zip_code, contact_no, email, credit_card_no, username, password)";
+
+        try {
+            conn.createStatement().executeUpdate("INSERT INTO mydb.customer " /*+ columns +*/ + " VALUES (DEFAULT, "
+                    + "'" + firstNameTextfiled.getText() + "', "
+                    + "'" + lastNameTextfield.getText() + "', "
+                    + "'" + countryTextfield.getText() + "', "
+                    + "'" + cityTextfield.getText() + "', "
+                    + "'" + streetTextfield.getText() + "', "
+                    + "'" + homeNoTextfield.getText() + "', "
+                    + "'" + zipCodeTextfield.getText() + "', "
+                    + "'" + contactNoTextfield.getText() + "', "
+                    + "'" + emailTextfield.getText() + "', "
+                    + "'" + creditCardNoTextfield.getText() + "', "
+                    + "'" + loginTextfield.getText() + "', "
+                    + "'" + passwordField.getText() + "');");
+        }
+        catch(SQLException e) {
+            System.err.println("Error" + e);
+        }
+
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void setDbConnection(DbConnection dbc) {
+        this.dbconn = dbc;
     }
 
     @FXML
