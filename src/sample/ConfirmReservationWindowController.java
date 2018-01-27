@@ -2,9 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -36,6 +34,8 @@ public class ConfirmReservationWindowController {
 
     private Integer roomTypeId;
 
+    private int maxguests;
+
     private DbConnection dbconn;
 
     private Customer customer;
@@ -48,17 +48,40 @@ public class ConfirmReservationWindowController {
         this.departureDateLabel.setText(departure_date);
         this.maxGuestNoLabel.setText(max_guest_no.toString());
         this.priceLabel.setText(price.toString());
+        this.maxguests = max_guest_no;
     }
 
     @FXML
     void confirmClicked(ActionEvent event) {
 
+        try {
+            int parsed = Integer.parseInt(guestNoTextField.getText());
+
+            if(parsed < 1 || parsed > maxguests) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please specify a valid number of guests", ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+        }
+        catch(NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect value", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
         Connection conn = dbconn.getConnection();
 
         try {
+            String arrival = arrivalDateLabel.getText();
+            String departure = departureDateLabel.getText();
+
             ResultSet res = conn.createStatement().executeQuery("SELECT room_no FROM mydb.room " +
                     "WHERE mydb.room.type_id = " + roomTypeId.toString()
-                    + " AND room_no NOT IN (SELECT room_no FROM mydb.reservation);");
+                    + " AND room_no NOT IN (SELECT room_no FROM mydb.reservation " +
+                    "WHERE (arrival_date <= '" + arrival + "' AND " +
+                    "departure_date >= '" + arrival + "') OR " +
+                    "(arrival_date <= '" + departure + "' AND " +
+                    "departure_date >= '" + departure + "'));");
 
             String reserved_room = "";
 

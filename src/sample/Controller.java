@@ -16,6 +16,7 @@ import javafx.stage.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Controller {
 
@@ -159,6 +160,7 @@ public class Controller {
                 if(currentCustomer.logged) {
                     settingsButton.setDisable(false);
                     reserveButton.setDisable(false);
+                    myReservationsButton.setDisable(false);
                 }
 
             });
@@ -303,11 +305,24 @@ public class Controller {
         //TODO ewentualnie jak jest picknięte w filtrach to pofiltrowac dane po pobraniu i dopiero dac do tabeli
         //TODO dodać sprawdzanie czy coś jest w date_pickerach bo jeśli nie to nie robić nic moim zdaniem
 
+        LocalDate checkIn = checkInDateContainer.getValue();
+        LocalDate checkOut = checkOutDateContainer.getValue();
+
+        if(checkOut.isBefore(checkIn)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Check-out date before check-in date!");
+            alert.showAndWait();
+            data.clear();
+            return;
+        }
+
         try {
             Connection conn = dbconn.getConnection();
             data = FXCollections.observableArrayList();
 
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM mydb.room_type");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM mydb.room_type " +
+                    "WHERE mydb.get_number_of_free_rooms_this_type(mydb.room_type.type_id, '"
+                    + checkIn.toString() + "', '"
+                    + checkOut.toString() + "') > 0;");
             while (rs.next()) {
                 data.add(new RoomType(rs.getInt(1), rs.getString(2), rs.getInt(3),
                         rs.getInt(4), rs.getInt(5), rs.getString(6)));
@@ -338,9 +353,22 @@ public class Controller {
         assert maxGuestsColumn != null : "fx:id=\"maxGuestsColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert priceColumn != null : "fx:id=\"priceColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert descriptionColumn != null : "fx:id=\"descriptionColumn\" was not injected: check your FXML file 'sample.fxml'.";
+
         dbconn = new DbConnection();
         currentCustomer = new Customer();
         settingsButton.setDisable(true);
         reserveButton.setDisable(true);
+        myReservationsButton.setDisable(true);
+        searchButton.setDisable(true);
+
+        checkInDateContainer.valueProperty().addListener((ov, oldValue, newValue) -> {
+            if(checkOutDateContainer.getValue() != null)
+                searchButton.setDisable(false);
+        });
+
+        checkOutDateContainer.valueProperty().addListener((ov, oldValue, newValue) -> {
+            if(checkInDateContainer.getValue() != null)
+                searchButton.setDisable(false);
+        });
     }
 }
