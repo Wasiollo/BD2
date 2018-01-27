@@ -44,6 +44,7 @@ public class LoginController {
 
             if(res.next())
             {
+                //login correct
                 if(res.getString(2).equals(passwordField.getText()))
                 {
                     customer = new Customer(loginField.getText(), res.getString(1), true);
@@ -52,13 +53,18 @@ public class LoginController {
                     alert.showAndWait();
                 }
 
+                //wrong password
                 else
                 {
-                    customer = new Customer();
-
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Wrong password", ButtonType.OK);
                     alert.showAndWait();
                 }
+            }
+
+            //username not found
+            else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "No such user found", ButtonType.OK);
+                alert.showAndWait();
             }
         }
         catch(SQLException e) {
@@ -66,12 +72,16 @@ public class LoginController {
         }
 
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.fireEvent(
-                new WindowEvent(
-                        stage,
-                        WindowEvent.WINDOW_CLOSE_REQUEST
-                )
-        );
+
+        if(customer.logged) {
+            stage.fireEvent(
+                    new WindowEvent(
+                            stage,
+                            WindowEvent.WINDOW_CLOSE_REQUEST
+                    )
+            );
+        }
+
         //stage.close();
     }
 
@@ -83,11 +93,14 @@ public class LoginController {
         return this.customer;
     }
 
+    public LoginController() {
+        this.customer = new Customer();
+    }
+
     @FXML
     void initialize() {
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'LoginWindow.fxml'.";
         assert loginField != null : "fx:id=\"loginField\" was not injected: check your FXML file 'LoginWindow.fxml'.";
         assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'LoginWindow.fxml'.";
-
     }
 }

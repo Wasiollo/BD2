@@ -161,7 +161,7 @@ public class Controller {
                     reserveButton.setDisable(false);
                 }
 
-            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
