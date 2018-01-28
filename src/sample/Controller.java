@@ -50,7 +50,6 @@ public class Controller {
     @FXML
     private MenuItem closeButton;
 
-
     @FXML
     private Button filterButton;
 
@@ -58,7 +57,7 @@ public class Controller {
     private Button searchButton;
 
     @FXML
-    private CheckBox price5CheckBox;
+    private Button defaultFilters;
 
     @FXML
     private CheckBox price4CheckBox;
@@ -85,9 +84,6 @@ public class Controller {
     private CheckBox guest4CheckBox;
 
     @FXML
-    private CheckBox guest5CheckBox;
-
-    @FXML
     private TableColumn<RoomType, String> maxGuestsColumn;
 
     @FXML
@@ -100,6 +96,16 @@ public class Controller {
     private TableColumn<RoomType, String> descriptionColumn;
 
     private ObservableList<RoomType> data;
+
+    private ObservableList<RoomType> firstFilteredData;
+
+    private ObservableList<RoomType> filteredData;
+
+    private RoomType filtrationIterator;
+
+    private Integer IteratorRoomPrice;
+
+    private Integer IteratorMaxGuests;
 
     private DbConnection dbconn;
 
@@ -125,7 +131,6 @@ public class Controller {
         }
     }
 
-
     @FXML
     void loginClicked(ActionEvent event) {
         try {
@@ -144,9 +149,8 @@ public class Controller {
 
             stage.setOnCloseRequest((WindowEvent event1) -> {
                 currentCustomer = controller.getCustomer();
-                //System.out.println("Current logged in customer: " + currentCustomer.login);
 
-                if(currentCustomer.logged) {
+                if (currentCustomer.logged) {
                     settingsButton.setDisable(false);
                     reserveButton.setDisable(false);
                     myReservationsButton.setDisable(false);
@@ -172,7 +176,6 @@ public class Controller {
             MyReservationsWindowController controller = fxmlLoader.getController();
             controller.setDbConnection(dbconn);
             controller.setCustomer(currentCustomer);
-            //controller.displayData();
 
             Stage myReservationsStage = new Stage();
             myReservationsStage.setTitle("My Reservations");
@@ -186,13 +189,12 @@ public class Controller {
             myReservationsStage.setOnCloseRequest((WindowEvent event2) -> {
                 Platform.exit();
                 System.exit(0);
-            }); // Przypadki gdy zamykamy albo chowamy okienko obsłużone WindowEventami i Lambdami
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     void settingsClicked(ActionEvent event) {
@@ -222,7 +224,6 @@ public class Controller {
         }
     }
 
-
     @FXML
     void closeClicked(ActionEvent event) {
         Platform.exit();
@@ -231,13 +232,48 @@ public class Controller {
 
     @FXML
     void filterClicked(ActionEvent event) {
+        firstFilteredData = FXCollections.observableArrayList();
+        filteredData = FXCollections.observableArrayList();
 
-        // To co tu jest pokazuje jak dostać się do wartości chceckboxów
-        if (price5CheckBox.isSelected())
-            price5CheckBox.setSelected(false);
-        //TODO wyświetlić tylko te dane w tabeli które będą sfiltrowane przy pomocy checkboxów - nie widzę sensu,
-        //TODO żeby strzelać jeszcze raz do bazy. Bardziej opłaca się chyba wyfiltrować observable arrayListe.
-        //TODO Ale może to trudne.
+        for (RoomType aData : data) {
+            filtrationIterator = aData;
+            IteratorMaxGuests = filtrationIterator.getMax_guests();
+            if ((guest1CheckBox.isSelected() && IteratorMaxGuests == 1)
+                    || (guest2CheckBox.isSelected() && IteratorMaxGuests == 2)
+                    || (guest3CheckBox.isSelected() && IteratorMaxGuests == 3)
+                    || (guest4CheckBox.isSelected() && IteratorMaxGuests == 4)
+                    ) {
+                firstFilteredData.add(filtrationIterator);
+            }
+        }
+
+        for (RoomType aData : firstFilteredData) {
+            filtrationIterator = aData;
+            IteratorRoomPrice = filtrationIterator.getRoom_price();
+            if ((price1CheckBox.isSelected() && filtrationIterator.getRoom_price() <= 100)
+                    || (price2CheckBox.isSelected() && IteratorRoomPrice >= 100 && IteratorRoomPrice <= 200)
+                    || (price3CheckBox.isSelected() && IteratorRoomPrice >= 200 && IteratorRoomPrice <= 500)
+                    || (price4CheckBox.isSelected() && IteratorRoomPrice >= 500)
+                    ) {
+                filteredData.add(filtrationIterator);
+            }
+        }
+
+        tableView.setItems(null);
+        tableView.setItems(filteredData);
+
+    }
+
+    @FXML
+    void defaultFiltersClicked(ActionEvent event) {
+        price1CheckBox.setSelected(true);
+        price2CheckBox.setSelected(true);
+        price3CheckBox.setSelected(true);
+        price4CheckBox.setSelected(true);
+        guest1CheckBox.setSelected(true);
+        guest2CheckBox.setSelected(true);
+        guest3CheckBox.setSelected(true);
+        guest4CheckBox.setSelected(true);
     }
 
     @FXML
@@ -281,18 +317,10 @@ public class Controller {
 
     @FXML
     void searchClicked(ActionEvent event) {
-
-        //TODO REFORMAT TEGO KODU I ZAPYTAANIE WYCIAGAJĄCE DANE Z BAZY OGRANICZONYCH DO KONKRETNEGO PRZEDZIALU DAT
-        //TODO WYCIAGNIETYCH Z ODPOWIEDNICH PÓl
-        //TODO zastanowic się czy sensowne jest zachowanie, gdzie najpierw filtrujemy i potem klikamy search.
-        //TODO co wyciągnęło by dane już zfiltrowane, ale nie wiem czy nie skomplikuje nam to zapytania
-        //TODO ewentualnie jak jest picknięte w filtrach to pofiltrowac dane po pobraniu i dopiero dac do tabeli
-        //TODO dodać sprawdzanie czy coś jest w date_pickerach bo jeśli nie to nie robić nic moim zdaniem
-
         LocalDate checkIn = checkInDateContainer.getValue();
         LocalDate checkOut = checkOutDateContainer.getValue();
 
-        if(checkOut.isBefore(checkIn)) {
+        if (checkOut.isBefore(checkIn)) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Check-out date before check-in date!");
             alert.showAndWait();
             data.clear();
@@ -322,6 +350,8 @@ public class Controller {
 
         tableView.setItems(null);
         tableView.setItems(data);
+
+        filterButton.setDisable(false);
     }
 
     @FXML
@@ -337,21 +367,23 @@ public class Controller {
         assert maxGuestsColumn != null : "fx:id=\"maxGuestsColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert priceColumn != null : "fx:id=\"priceColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert descriptionColumn != null : "fx:id=\"descriptionColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert defaultFilters != null : "fx:id=\"defaultFilters\" was not injected: check your FXML file 'sample.fxml'.";
 
         dbconn = new DbConnection();
         currentCustomer = new Customer();
         settingsButton.setDisable(true);
+        filterButton.setDisable(true);
         reserveButton.setDisable(true);
         myReservationsButton.setDisable(true);
         searchButton.setDisable(true);
 
         checkInDateContainer.valueProperty().addListener((ov, oldValue, newValue) -> {
-            if(checkOutDateContainer.getValue() != null)
+            if (checkOutDateContainer.getValue() != null)
                 searchButton.setDisable(false);
         });
 
         checkOutDateContainer.valueProperty().addListener((ov, oldValue, newValue) -> {
-            if(checkInDateContainer.getValue() != null)
+            if (checkInDateContainer.getValue() != null)
                 searchButton.setDisable(false);
         });
     }
