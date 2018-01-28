@@ -25,12 +25,6 @@ public class MyReservationsWindowController {
     private URL location;
 
     @FXML
-    private MenuItem settingsButton;
-
-    @FXML
-    private MenuItem loginButton;
-
-    @FXML
     private DatePicker checkInDateContainer;
 
     @FXML
@@ -72,10 +66,6 @@ public class MyReservationsWindowController {
 
     private Customer customer;
 
-    @FXML
-    void settingsClicked(ActionEvent event) {
-        new Controller().settingsClicked(event);
-    }
 
     @FXML
     void closeClicked(ActionEvent event) {
@@ -140,8 +130,6 @@ public class MyReservationsWindowController {
 
     @FXML
     void initialize() {
-        assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
-        assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert checkInDateContainer != null : "fx:id=\"checkInDateContainer\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert departureDateColumn != null : "fx:id=\"departureDateColumn\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";
         assert newReservationButton != null : "fx:id=\"newReservationButton\" was not injected: check your FXML file 'MyReservationsWindow.fxml'.";

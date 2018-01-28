@@ -27,8 +27,6 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Account">
                     <items>
-                        <MenuItem fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsClicked"
-                                  text="Settings"/>
                         <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked" text="Close"/>
                     </items>
                 </Menu>
@@ -36,11 +34,6 @@
                     <items>
                         <MenuItem fx:id="newReservationButton" mnemonicParsing="false" onAction="#newReservationClicked"
                                   text="New Reservation"/>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="About"/>
                     </items>
                 </Menu>
             </menus>
