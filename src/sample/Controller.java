@@ -111,8 +111,8 @@ public class Controller {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "RegisterWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            RegisterWindowController controller = fxmlLoader.<RegisterWindowController>getController();
+            Parent root1 = fxmlLoader.load();
+            RegisterWindowController controller = fxmlLoader.getController();
             controller.setDbConnection(dbconn);
 
             Stage stage = new Stage();
@@ -120,10 +120,6 @@ public class Controller {
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
             stage.show();
-
-            stage.setOnCloseRequest((WindowEvent event1) -> {
-            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,19 +128,12 @@ public class Controller {
 
     @FXML
     void loginClicked(ActionEvent event) {
-
-        //TODO prawdoopodnie trzeba stworzyć obiekt customera, który miałby dane wyciągnięte z bazy podczas logowania
-        //TODO nie wiem czy nie przy inicjalizacji projektu i przekazywać go sobie między kontrolerami okienek.
-        //TODO bo bez tego okienko settings i my reservation cale bedzie biedą.
-        //TODO Zainicjalizować go nullami i w logowaniu setować realnymi wartoścami. Wiem że obvious ale lepiej
-        //TODO napisać.
-
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "LoginWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            LoginController controller = fxmlLoader.<LoginController>getController();
+            Parent root1 = fxmlLoader.load();
+            LoginController controller = fxmlLoader.getController();
             controller.setDbConnection(dbconn);
 
             Stage stage = new Stage();
@@ -179,8 +168,8 @@ public class Controller {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "MyReservationsWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            MyReservationsWindowController controller = fxmlLoader.<MyReservationsWindowController>getController();
+            Parent root1 = fxmlLoader.load();
+            MyReservationsWindowController controller = fxmlLoader.getController();
             controller.setDbConnection(dbconn);
             controller.setCustomer(currentCustomer);
             //controller.displayData();
@@ -193,9 +182,7 @@ public class Controller {
 
             controller.displayData();
 
-            myReservationsStage.setOnHiding((WindowEvent event1) -> {
-                stage.show();
-            });
+            myReservationsStage.setOnHiding((WindowEvent event1) -> stage.show());
             myReservationsStage.setOnCloseRequest((WindowEvent event2) -> {
                 Platform.exit();
                 System.exit(0);
@@ -214,8 +201,8 @@ public class Controller {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "SettingsWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            SettingsWindowController controller = fxmlLoader.<SettingsWindowController>getController();
+            Parent root1 = fxmlLoader.load();
+            SettingsWindowController controller = fxmlLoader.getController();
             controller.setDbConnection(dbconn);
             controller.setCustomer(currentCustomer);
             controller.displayCustomerData();
@@ -260,9 +247,9 @@ public class Controller {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(
                             "ConfirmReservationWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Parent root1 = fxmlLoader.load();
             ConfirmReservationWindowController controller =
-                    fxmlLoader.<ConfirmReservationWindowController>getController();
+                    fxmlLoader.getController();
             controller.setDbConnection(dbconn);
             controller.setCustomer(currentCustomer);
 
@@ -283,8 +270,7 @@ public class Controller {
             stage.setResizable(false);
             stage.show();
 
-            stage.setOnCloseRequest((WindowEvent event1) -> {
-            }); //TODO jeżeli nie chcemy żeby coś się działo przy zamknięciu to wywalić tą lambdę
+            stage.setOnCloseRequest((WindowEvent event1) -> this.searchClicked(event));
 
         } catch (Exception e) {
             e.printStackTrace();

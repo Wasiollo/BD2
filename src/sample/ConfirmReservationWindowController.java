@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -104,6 +105,12 @@ public class ConfirmReservationWindowController {
         }
 
         Stage stage = (Stage) confirmButton.getScene().getWindow();
+        stage.fireEvent(
+                new WindowEvent(
+                        stage,
+                        WindowEvent.WINDOW_CLOSE_REQUEST
+                )
+        );
         stage.close();
     }
 
