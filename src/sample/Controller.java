@@ -306,7 +306,10 @@ public class Controller {
             stage.setResizable(false);
             stage.show();
 
-            stage.setOnCloseRequest((WindowEvent event1) -> this.searchClicked(event));
+            stage.setOnCloseRequest((WindowEvent event1) -> {
+                this.searchClicked(event);
+                this.filterClicked(event);
+            });
 
         } catch (Exception e) {
             e.printStackTrace();

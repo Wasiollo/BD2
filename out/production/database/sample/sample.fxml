@@ -36,27 +36,27 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-                <TableView fx:id="tableView" layoutY="50.0" prefHeight="469.0" prefWidth="762.0"
+                <TableView fx:id="tableView" layoutY="50.0" prefHeight="573.0" prefWidth="761.0"
                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="175.0" text="Name"/>
+                        <TableColumn fx:id="nameColumn" prefWidth="116.0" text="Name"/>
                         <TableColumn fx:id="maxGuestsColumn" prefWidth="71.0" text="Max Guests"/>
-                        <TableColumn fx:id="priceColumn" prefWidth="89.0" text="Price"/>
-                        <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="423.0" text="Description"/>
+                        <TableColumn fx:id="priceColumn" prefWidth="37.0" text="Price"/>
+                        <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="534.0" text="Description"/>
                     </columns>
                 </TableView>
-                <Button fx:id="filterButton" layoutX="872.0" layoutY="563.0" mnemonicParsing="false"
+                <Button fx:id="filterButton" layoutX="872.0" layoutY="25.0" mnemonicParsing="false"
                         onAction="#filterClicked" text="Filter"/>
-                <Button fx:id="reserveButton" layoutX="351.0" layoutY="551.0" mnemonicParsing="false"
+                <Button fx:id="reserveButton" layoutX="702.0" layoutY="25.0" mnemonicParsing="false"
                         onAction="#reserveClicked" text="Reserve"/>
                 <DatePicker fx:id="checkInDateContainer" layoutX="72.0" layoutY="25.0"/>
                 <DatePicker fx:id="checkOutDateContainer" layoutX="355.0" layoutY="25.0"/>
                 <Label layoutX="15.0" layoutY="29.0" text="Check-in"/>
                 <Label layoutX="274.0" layoutY="29.0" text="Check-out"/>
-                <Button fx:id="searchButton" layoutX="641.0" layoutY="25.0" mnemonicParsing="false"
+                <Button fx:id="searchButton" layoutX="591.0" layoutY="25.0" mnemonicParsing="false"
                         onAction="#searchClicked" text="Search"/>
-                <TreeView fx:id="filterTreeView" editable="true" layoutX="762.0" layoutY="50.0" prefHeight="469.0"
-                          prefWidth="262.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="0.0"
+                <TreeView fx:id="filterTreeView" editable="true" layoutX="762.0" layoutY="50.0" prefHeight="573.0"
+                          prefWidth="266.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="0.0"
                           AnchorPane.topAnchor="50.0">
                     <root>
                         <TreeItem value="Filter">
@@ -65,27 +65,26 @@
                                     <children>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="guest1CheckBox" prefWidth="180.0" text="1"/>
+                                                <CheckBox fx:id="guest1CheckBox" prefWidth="180.0" selected="true"
+                                                          text="1"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="guest2CheckBox" prefWidth="180.0" text="2"/>
+                                                <CheckBox fx:id="guest2CheckBox" prefWidth="180.0" selected="true"
+                                                          text="2"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="guest3CheckBox" prefWidth="180.0" text="3"/>
+                                                <CheckBox fx:id="guest3CheckBox" prefWidth="180.0" selected="true"
+                                                          text="3"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="guest4CheckBox" prefWidth="180.0" text="4"/>
-                                            </value>
-                                        </TreeItem>
-                                        <TreeItem>
-                                            <value>
-                                                <CheckBox fx:id="guest5CheckBox" prefWidth="180.0" text="5 or more"/>
+                                                <CheckBox fx:id="guest4CheckBox" prefWidth="180.0" selected="true"
+                                                          text="4"/>
                                             </value>
                                         </TreeItem>
                                     </children>
@@ -96,27 +95,26 @@
                                     <children>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="price1CheckBox" prefWidth="180.0" text="100"/>
+                                                <CheckBox fx:id="price1CheckBox" prefWidth="180.0" selected="true"
+                                                          text="100 or less"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="price2CheckBox" prefWidth="180.0" text="100-200"/>
+                                                <CheckBox fx:id="price2CheckBox" prefWidth="180.0" selected="true"
+                                                          text="100-200"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="price3CheckBox" prefWidth="180.0" text="200-500"/>
+                                                <CheckBox fx:id="price3CheckBox" prefWidth="180.0" selected="true"
+                                                          text="200-500"/>
                                             </value>
                                         </TreeItem>
                                         <TreeItem>
                                             <value>
-                                                <CheckBox fx:id="price4CheckBox" prefWidth="180.0" text="500-1000"/>
-                                            </value>
-                                        </TreeItem>
-                                        <TreeItem>
-                                            <value>
-                                                <CheckBox fx:id="price5CheckBox" prefWidth="180.0" text="&gt;1000"/>
+                                                <CheckBox fx:id="price4CheckBox" prefWidth="180.0" selected="true"
+                                                          text="500 or more"/>
                                             </value>
                                         </TreeItem>
                                     </children>
@@ -125,6 +123,8 @@
                         </TreeItem>
                     </root>
                 </TreeView>
+                <Button fx:id="defaultFilters" layoutX="939.0" layoutY="25.0" mnemonicParsing="false"
+                        onAction="#defaultFiltersClicked" text="Default filters"/>
             </children>
         </AnchorPane>
     </children>
