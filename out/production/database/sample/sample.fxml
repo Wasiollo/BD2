@@ -34,11 +34,6 @@
                                           onAction="#myReservationsClicked" text="My Reservations"/>
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About"/>
-                            </items>
-                        </Menu>
                     </menus>
                 </MenuBar>
                 <TableView fx:id="tableView" layoutY="50.0" prefHeight="469.0" prefWidth="762.0"

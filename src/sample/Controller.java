@@ -173,8 +173,6 @@ public class Controller {
     @FXML
     void myReservationsClicked(ActionEvent event) {
 
-        //TODO przekazanie obiektu customera tak jak pisałem wcześniej??
-
         Stage stage = (Stage) reserveButton.getScene().getWindow();
         stage.hide();
         try {

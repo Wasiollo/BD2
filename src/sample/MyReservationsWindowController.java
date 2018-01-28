@@ -57,15 +57,18 @@ public class MyReservationsWindowController {
     @FXML
     private Button filterButton;
 
-    private ObservableList<Reservation> data;
-
     @FXML
     private TableColumn<Reservation, String> guestsNoColumn;
+
+    private ObservableList<Reservation> data;
 
     private DbConnection dbconn;
 
     private Customer customer;
 
+    private ObservableList<Reservation> filteredData;
+
+    private Reservation tempReservation;
 
     @FXML
     void closeClicked(ActionEvent event) {
@@ -86,11 +89,19 @@ public class MyReservationsWindowController {
     }
 
     @FXML
-    void filterClicked(ActionEvent event) {
+    public void filterClicked(ActionEvent event) {
+        filteredData = FXCollections.observableArrayList();
 
-        //TODO button clicked event do pokazania rezerwacji w przedziale czasu
-        //TODO moim zdaniem bez dodatkowych filtrów
+        for (Reservation aData : data) {
+            tempReservation = aData;
+            if (tempReservation.getArrival().compareTo(checkInDateContainer.getValue().toString()) >= 0
+                    && tempReservation.getDeparture().compareTo(checkOutDateContainer.getValue().toString()) <= 0) {
+                filteredData.add(tempReservation);
+            }
+        }
 
+        tableView.setItems(null);
+        tableView.setItems(filteredData);
     }
 
     public void displayData() {
